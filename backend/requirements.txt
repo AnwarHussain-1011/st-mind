@@ -1,0 +1,20 @@
+Django>=5.2,<6.0
+djangorestframework>=3.15.1
+psycopg[binary]>=3.1.18
+celery>=5.3.6
+redis>=5.0.3
+django-cors-headers>=4.3.1
+djangorestframework-simplejwt>=5.3.1
+gunicorn>=21.2.0
+python-dotenv>=1.0.1
+channels>=4.0.0
+daphne>=4.1.0
+google-genai>=0.1.0
+channels-redis>=4.2.0
+PyPDF2>=3.0.1
+tiktoken>=0.6.0
+pgvector>=0.2.5
+
+# Testing
+pytest>=8.1.1
+pytest-django>=4.8.0
