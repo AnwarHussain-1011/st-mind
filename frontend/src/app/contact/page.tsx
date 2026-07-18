@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Linkedin, Send, GraduationCap, ChevronLeft } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, GraduationCap, ChevronLeft } from 'lucide-react';
+import { FaLinkedin } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -89,7 +90,7 @@ export default function Contact() {
                 <p className="text-sm text-blue-200 mb-4">Connect on Professional Networks</p>
                 <div className="flex space-x-4">
                   <a href="#" className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors" aria-label="LinkedIn">
-                    <Linkedin className="h-5 w-5" />
+                    <FaLinkedin className="h-5 w-5" />
                   </a>
                 </div>
               </div>
