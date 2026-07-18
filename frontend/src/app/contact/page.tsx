@@ -73,8 +73,8 @@ export default function Contact() {
 
                 <div className="flex items-center">
                   <Mail className="h-6 w-6 text-blue-300 mr-4 flex-shrink-0" />
-                  <a href="mailto:anwarsofi2001@gmail.com" className="text-blue-50 hover:text-white transition-colors break-all">
-                    anwarsofi2001@gmail.com
+                  <a href="mailto:sofianwar2001@gmail.com" className="text-blue-50 hover:text-white transition-colors break-all">
+                    sofianwar2001@gmail.com
                   </a>
                 </div>
 
