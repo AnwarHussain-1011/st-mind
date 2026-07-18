@@ -28,9 +28,21 @@ export default function Register() {
       });
       router.push('/login');
     } catch (err: any) {
-      if (err.response?.data) {
-        const firstErrorKey = Object.keys(err.response.data)[0];
-        setError(`${firstErrorKey}: ${err.response.data[firstErrorKey]}`);
+      if (err.code === 'ERR_NETWORK' || !err.response) {
+        setError('Failed to connect to the backend. Please ensure the Django server is running.');
+      } else if (err.response?.data) {
+        const data = err.response.data;
+        const backendError =
+          data.detail ||
+          data.message ||
+          data.email?.[0] ||
+          data.username?.[0] ||
+          data.student_id?.[0] ||
+          data.password?.[0] ||
+          Object.values(data).flat().join(" ") ||
+          `Registration failed (${err.response.status})`;
+        
+        setError(String(backendError));
       } else {
         setError('Registration failed. Please try again.');
       }
