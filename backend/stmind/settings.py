@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # ST-MIND applications
     "accounts",
     "core",
+    "rest_framework_simplejwt.token_blacklist",
 ]
 
 AUTH_USER_MODEL = "accounts.User"
@@ -189,9 +190,11 @@ from datetime import timedelta
 
 # Simple JWT Configuration
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": False,
     "AUTH_HEADER_TYPES": ("Bearer",),
+    "SIGNING_KEY": os.getenv("JWT_SECRET_KEY", SECRET_KEY + "jwt"),
 }
