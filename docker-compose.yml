@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15-alpine
+    image: pgvector/pgvector:pg15
     environment:
       POSTGRES_DB: stmind
       POSTGRES_USER: ${POSTGRES_USER:-stmind_user}
@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-stmind_user} -d stmind"]
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-stmind_user} -d stmind" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -22,13 +22,13 @@ services:
     ports:
       - "6379:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       timeout: 3s
       retries: 5
 
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
@@ -38,6 +38,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - DJANGO_DEBUG=true
       - DATABASE_URL=postgres://${POSTGRES_USER:-stmind_user}:${POSTGRES_PASSWORD:-stmind_pass}@db:5432/stmind
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/1
